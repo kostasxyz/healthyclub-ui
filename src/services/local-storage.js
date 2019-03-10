@@ -1,4 +1,4 @@
-export default class Storage {
+export default class LocalStorage {
   constructor() {
     this.store = window.localStorage;
   }
@@ -9,5 +9,9 @@ export default class Storage {
 
   getRegData(key) {
     this.store.getItem(key);
+  }
+
+  setRegData(key) {
+    this.store.setItem(key);
   }
 }

@@ -1,82 +1,122 @@
-export default {
-  142: {
+export default [
+  {
+    hmin: 142,
+    hmax: 144,
     from: 38,
     to: 50
   },
-  145: {
+  {
+    hmin: 145,
+    hmax: 149,
     from: 41,
     to: 52
   },
-  150: {
+  {
+    hmin: 150,
+    hmax: 151,
     from: 43,
     to: 54
   },
-  152: {
+  {
+    hmin: 152,
+    hmax: 154,
     from: 43,
     to: 57
   },
-  155: {
+  {
+    hmin: 155,
+    hmax: 156,
     from: 45,
     to: 59
   },
-  157: {
+  {
+    hmin: 157,
+    hmax: 159,
     from: 48,
     to: 61
   },
-  160: {
+  {
+    hmin: 160,
+    hmax: 162,
     from: 48,
     to: 64
   },
-  163: {
+  {
+    hmin: 163,
+    hmax: 164,
     from: 50,
     to: 66
   },
-  165: {
+  {
+    hmin: 165,
+    hmax: 169,
     from: 52,
     to: 68
   },
-  170: {
+  {
+    hmin: 170,
+    hmax: 172,
     from: 54,
     to: 70
   },
-  173: {
+  {
+    hmin: 173,
+    hmax: 174,
     from: 57,
     to: 73
   },
-  175: {
+  {
+    hmin: 175,
+    hmax: 177,
     from: 59,
     to: 75
   },
-  178: {
+  {
+    hmin: 178,
+    hmax: 179,
     from: 59,
     to: 77
   },
-  180: {
+  {
+    hmin: 180,
+    hmax: 182,
     from: 61,
     to: 80
   },
-  183: {
+  {
+    hmin: 183,
+    hmax: 184,
     from: 63,
     to: 82
   },
-  185: {
+  {
+    hmin: 185,
+    hmax: 187,
     from: 66,
     to: 84
   },
-  188: {
+  {
+    hmin: 188,
+    hmax: 189,
     from: 66,
     to: 86
   },
-  190: {
+  {
+    hmin: 190,
+    hmax: 192,
     from: 68,
     to: 91
   },
-  193: {
+  {
+    hmin: 193,
+    hmax: 195,
     from: 70,
     to: 93
   },
-  196: {
+  {
+    hmin: 196,
+    hmax: 200,
     from: 73,
     to: 95
   },
-}
+]

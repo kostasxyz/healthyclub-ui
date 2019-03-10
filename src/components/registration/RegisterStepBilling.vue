@@ -2,9 +2,9 @@
   <v-container fluid fill-height class="registration-steps registration-step-billing">
     <v-layout align-center justify-center column class="hc-layout-no-fill-height">
       <v-flex xs12 sm8 md4>
-        <div>
+        <v-form v-model="validForm">
           <p>Billing form</p>
-        </div>
+        </v-form>
       </v-flex>
     </v-layout>
   </v-container>
@@ -18,7 +18,9 @@ export default {
   // Data
   //--------------------------------------
   data() {
-
+    return {
+      validForm: true
+    }
   },
 
   //--------------------------------------

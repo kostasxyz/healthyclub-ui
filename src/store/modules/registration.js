@@ -1,11 +1,12 @@
 // initial state
 const state = {
-  step: 19,
-  name: '',
+  step: 20,
+  stepDir: 1,
   birthYear: 2000,
   gender: 1,
   height: null,
   weight: null,
+  weightGoal: null,
   activity: 1.2,
   smoker: 0,
   allergies: [],
@@ -16,17 +17,20 @@ const state = {
   meals: ['breakfast', 'lunch', 'dinner'],
   sameLunchDinner: 0,
   email: '',
+  liftFiveKilos: 0,
+  crossRoom: 0,
+  tenStepStair: 0,
 }
 
 // actions
 const actions = {
   setData({commit}, payload) {
-    console.log(payload)
-    commit('SET_DATA', payload)
+    console.log('action@setData: ', payload);
+    commit('SET_DATA', payload);
   },
 
-  setRegStep({commit}, payload) {
-    commit('SET_REG_STEP', payload)
+  seedState({commit}, payload) {
+    commit('SEED_STATE', payload);
   }
 }
 
@@ -34,11 +38,14 @@ const actions = {
 const mutations = {
   SET_DATA(state, payload) {
     state[payload.key] = payload.val;
+    console.log('mutation@SET_DATA: ', state);
+    window.localStorage.setItem('hc_reg_data', JSON.stringify(state));
   },
 
-  SET_REG_STEP(state, payload) {
-    state.step = payload;
-  },
+  SEED_STATE(state, payload) {
+    Object.assign(state, payload);
+    console.log('mutation@SEED_STATE: ', state);
+  }
 }
 
 // getters

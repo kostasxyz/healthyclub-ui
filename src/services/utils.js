@@ -85,6 +85,12 @@ const mealTimes = [
   { label: 'Βραδινό', val: 'dinner'},
 ];
 
+const validateEmail = (email) => {
+  // eslint-disable-next-line
+  const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  return re.test(String(email).toLowerCase());
+}
+
 export {
   birthYears,
   onlyAlphaSpaces,
@@ -96,5 +102,8 @@ export {
   dietTypeList,
   carbTypeList,
   dietSituationals,
-  mealTimes
+  mealTimes,
+  getCurrentDate,
+  getMaxBirthYear,
+  validateEmail
 }

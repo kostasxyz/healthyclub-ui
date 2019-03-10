@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-toolbar color="primary" fixed flat class="text-xs-center" app>
+    <v-toolbar color="primary" fixed flat class="text-xs-center white--text" app>
       <v-btn icon @click="prevRegStep">
-        <v-icon>arrow_back</v-icon>
+        <v-icon color="white">arrow_back</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-title>ΕΓΓΡΑΦΗ</v-toolbar-title>
@@ -45,11 +45,13 @@
 
       <RegisterStepQ v-if="regStep === 17" @nextRegStep="nextRegStep"/>
 
-      <RegisterStepR v-if="regStep === 18" @nextRegStep="nextRegStep"/>
+      <RegisterStepT v-if="regStep === 18" @nextRegStep="nextRegStep"/>
 
-      <RegisterStepS v-if="regStep === 19" @nextRegStep="nextRegStep"/>
+      <RegisterStepR v-if="regStep === 19" @nextRegStep="nextRegStep"/>
 
-      <RegisterStepBilling v-if="regStep === 20" @nextRegStep="nextRegStep"/>
+      <RegisterStepS v-if="regStep === 20" @nextRegStep="nextRegStep"/>
+
+      <RegisterStepBilling v-if="regStep === 21" @nextRegStep="nextRegStep"/>
     </v-content>
   </v-app>
 </template>
@@ -79,6 +81,7 @@ export default {
     RegisterStepQ: () => import('../components/registration/RegisterStepQ.vue'),
     RegisterStepR: () => import('../components/registration/RegisterStepR.vue'),
     RegisterStepS: () => import('../components/registration/RegisterStepS.vue'),
+    RegisterStepT: () => import('../components/registration/RegisterStepT.vue'),
     RegisterStepBilling: () => import('../components/registration/RegisterStepBilling.vue'),
   },
 
@@ -87,12 +90,16 @@ export default {
   //--------------------------------------
   data() {
     return {
-
+      localStorageRegData: {}
     }
   },
 
+  created() {
+    this.getLocalStorageRegData();
+  },
+
   updated() {
-    console.log(this.$store.state.registration);
+    console.log('created@localRegData: ', this.localStorageRegData);
   },
 
   //--------------------------------------
@@ -106,12 +113,20 @@ export default {
   // Methods
   //--------------------------------------
   methods: {
+    getLocalStorageRegData() {
+      let localStorageRegData = window.localStorage.getItem('hc_reg_data');
+      if(localStorageRegData) {
+        this.$store.dispatch('registration/seedState', JSON.parse(localStorageRegData));
+        this.localStorageRegData = JSON.parse(localStorageRegData);
+      }
+    },
     nextRegStep() {
-      let step = this.regStep+1;
+      this.$store.dispatch('registration/setData', { key: 'stepDir', val: 1 });
+      let step = this.regStep + 1;
 
       // If is step 1 and gender is 1 (male) skip q2 for pregnants
       if(this.$store.state.registration.gender === 1 && this.regStep === 1) {
-        step = this.regStep+2;
+        step = this.regStep + 2;
       }
 
       // If lunch and dinner are included
@@ -120,18 +135,20 @@ export default {
         this.$store.state.registration.meals.includes('dinner')) &&
         this.regStep === 10
       ) {
-        step = this.regStep+2;
+        step = this.regStep + 2;
       }
 
-      this.$store.commit('registration/SET_REG_STEP', step);
+      this.$store.dispatch('registration/setData', { key: 'step', val: step });
     },
 
     prevRegStep() {
-      let step = this.regStep > 1 ? this.regStep-1 : 1;
+      this.$store.dispatch('registration/setData', { key: 'stepDir', val: -1 });
+
+      let step = this.regStep > 1 ? this.regStep - 1 : 1;
 
       // If is step 3 and gender is 1 (male) skip q2 for pregnants
       if(this.$store.state.registration.gender === 1 && this.regStep === 3) {
-        step = this.regStep-2;
+        step = this.regStep - 2;
       }
 
       // If lunch and dinner are included
@@ -140,13 +157,13 @@ export default {
         this.$store.state.registration.meals.includes('dinner')) && 
         this.regStep === 12
       ) {
-        step = this.regStep-2;
+        step = this.regStep - 2;
       }
 
       if(this.regStep === 1) {
         this.$router.push({ name: 'home' });
       } else {
-        this.$store.commit('registration/SET_REG_STEP', step);
+        this.$store.dispatch('registration/setData', { key: 'step', val: step });
       }
     }
   }
@@ -155,6 +172,7 @@ export default {
 
 <style lang="scss">
 .registration-view {
+
   .container.fill-height {
     > .hc-layout-no-fill-height {
       height: auto;

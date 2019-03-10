@@ -9,19 +9,21 @@
       <v-flex xs12 sm8 md6>
         <v-form v-model="validForm">
           <v-layout column>
-              <v-text-field
-                v-model="email"
-                label="Email"
-                class="mb-4"
-                :rules="validate.email"
-              ></v-text-field>
+            <v-text-field
+              v-model="email"
+              label="Email"
+              class="mb-4"
+              :rules="validate.email"
+            ></v-text-field>
         
-              <v-btn 
-                color="accent" 
-                :disabled="!validForm"
-                @click="$emit('nextRegStep')">
-                  ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
-              </v-btn>
+            <v-btn 
+              color="red"
+              class="white--text"
+              round
+              :disabled="!validForm"
+              @click="$emit('nextRegStep')">
+                ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
+            </v-btn>
           </v-layout>
         </v-form>
       </v-flex>
@@ -30,6 +32,8 @@
 </template>
 
 <script>
+import { validateEmail } from '../../services/utils.js';
+
 export default {
   name: 'register-step-r',
 
@@ -42,7 +46,7 @@ export default {
       validate: {
         email: [
           v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid'
+          v => validateEmail(v) || 'E-mail must be valid'
         ]
       },
     }

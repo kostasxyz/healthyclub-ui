@@ -5,7 +5,7 @@
         <v-form v-model="validForm">
           <v-layout column>
             <h4 class="text-xs-center mb-4">Πόσο εύκολα μπορείτε να ανεβείτε μία σκάλα με δέκα σκαλοπάτια; </h4>
-            <v-radio-group v-model="sameLunchDinner" :class="'radio-center'">
+            <v-radio-group v-model="tenStepStair" :class="'radio-center'">
               <v-radio
                 label="Πολύ Εύκολα"
                 :value="0"
@@ -19,8 +19,11 @@
                 :value="2"
               ></v-radio>
             </v-radio-group>
+
             <v-btn 
-              color="accent" 
+              color="red"
+              class="white--text"
+              round
               :disabled="!validForm"
               @click="$emit('nextRegStep')">
                 ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
@@ -33,11 +36,15 @@
 </template>
 
 <script>
+import ageUnderSixty from '../../mixins/age-under-sixty.js';
+
 export default {
   name: 'register-step-q',
 
-  //--------------------------------------
-  // Data
+  mixins: [ 
+    ageUnderSixty 
+  ],
+
   //--------------------------------------
   data() {
     return {
@@ -46,20 +53,11 @@ export default {
   },
 
   //--------------------------------------
-  // Computed
-  //--------------------------------------
   computed: {
-    sameLunchDinner: {
-      get() { return 0 } ,
-      set(val) { console.log(val) }
-    },
+    tenStepStair: {
+      get() { return this.$store.state.registration.tenStepStair } ,
+      set(val) { this.$store.dispatch('registration/setData', { key: 'tenStepStair', val }) }
+    }
   },
-
-  //--------------------------------------
-  // Methods
-  //--------------------------------------
-  methods: {
-
-  }
 }
 </script>

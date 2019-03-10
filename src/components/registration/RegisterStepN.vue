@@ -26,12 +26,14 @@
               <hr class="my-4">
             </div>
 
-            <v-btn 
-              color="accent" 
-              :disabled="!validForm"
-              @click="$emit('nextRegStep')">
-                ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
-            </v-btn>
+          <v-btn 
+            color="red"
+            class="white--text"
+            round
+            :disabled="!validForm"
+            @click="$emit('nextRegStep')">
+              ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
+          </v-btn>
           </v-layout>
         </v-form>
       </v-flex>

@@ -17,7 +17,9 @@
             </v-radio-group>
 
             <v-btn 
-              color="accent" 
+              color="red"
+              class="white--text"
+              round
               :disabled="!validForm"
               @click="$emit('nextRegStep')">
                 ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>

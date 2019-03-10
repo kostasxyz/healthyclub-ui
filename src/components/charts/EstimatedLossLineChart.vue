@@ -1,24 +1,14 @@
 <script>
 import { Line, mixins } from 'vue-chartjs';
-const { reactiveProp } = mixins;
+// const { reactiveProp } = mixins;
 
 export default {
   extends: Line,
-  mixins: [reactiveProp],
-  props: {
-   chartData: {
-     type: Array,
-     required: true
-   },
-   chartLabels: {
-     type: Array,
-     required: true
-   }
-  },
+  // mixins: [reactiveProp],
 
   mounted() {
     this.renderChart({
-      labels: ["Φεβ", "Μαρ","Μαη", "Ιουν"],
+      labels: ["", "","", ""],
       lineTension: 0,
       datasets: [{
           label: "Βάρος",
@@ -27,7 +17,7 @@ export default {
           borderWidth: 1,
           pointBorderColor: "white",
           backgroundColor: '#3dc2d0',
-          data: [82, 82, 71, 71],
+          data: [100, 100, 99, 99],
           lineTension: 0,
           pointRadius: 6
       }]

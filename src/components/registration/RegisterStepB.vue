@@ -33,7 +33,9 @@
             <p class="blue-grey--text text--lighten-2 my-2">Χρησιμοποιούμε αυτές τις πληροφορίες για να υπολογίσουμε το BMI σου</p>
         
             <v-btn 
-              color="accent" 
+              color="red"
+              class="white--text"
+              round
               :disabled="!validForm"
               @click="$emit('nextRegStep')">
                 ΕΠΟΜΕΝΟ <v-icon right>arrow_forward</v-icon>
@@ -61,12 +63,12 @@ export default {
         height: [
           v => !!v || 'Height is required',
           v => isInt(v) || 'Height must be a number',
-          v => intBetween(v, 142, 210) || 'Between 142 and 210',
+          v => intBetween(v, 142, 200) || 'Between 142 and 200',
         ],
         weight: [
           v => !!v || 'Weight is required',
           v => isInt(v) || 'Weight must be a number',
-          v => intBetween(v, 42, 182) || 'Between 42 and 182',
+          v => intBetween(v, 38, 182) || 'Between 38 and 182',
         ],
       }
     }

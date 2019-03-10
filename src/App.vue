@@ -15,8 +15,6 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-family: 'Noto Sans', sans-serif;
-}
+<style lang="scss">
+@import './assets/scss/app.scss';
 </style>
